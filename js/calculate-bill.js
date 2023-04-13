@@ -11,3 +11,42 @@
 //  * once done looping over all the entries - display the total onto the screen in the billTotal element
 
 //link the function to a click event on the calculate button
+
+
+let calculateBtnElement = document.querySelector(".calculateBtn");
+let billTotalElement = document.querySelector(".billTotal");
+let billStringElement = document.querySelector(".billString");
+
+
+function totalPhoneBill(){
+    var overallBillTotal = 0;
+    
+    //console.log(billStringElement)
+    let price = billStringElement.value.split(',');
+    
+    for(var i = 0; i<price.length;i++){
+        let currentBillString = price[i].trim();
+        if(currentBillString === 'call'){
+            overallBillTotal += 2.75;
+        }
+
+        if(currentBillString === 'sms'){
+            overallBillTotal += 0.75
+        }
+    }
+    //console.log(overallBillTotal)
+
+    if(overallBillTotal >= 20){
+        billTotalElement.classList.add('warning');
+    }
+
+    if(overallBillTotal >= 30){
+        billTotalElement.classList.add('danger');
+    }
+    
+
+    var roundedBillTotal = overallBillTotal.toFixed(2);
+    billTotalElement.innerHTML = roundedBillTotal;
+}
+
+calculateBtnElement.addEventListener('click', totalPhoneBill);
