@@ -22,7 +22,7 @@ function totalPhoneBill(){
     var overallBillTotal = 0;
     
     //console.log(billStringElement)
-    let price = billStringElement.value.split(',');
+    let price = billStringElement.value.toLowerCase().split(',');
     
     for(var i = 0; i<price.length;i++){
         let currentBillString = price[i].trim();
@@ -38,10 +38,17 @@ function totalPhoneBill(){
 
     if(overallBillTotal >= 20){
         billTotalElement.classList.add('warning');
+
     }
 
     if(overallBillTotal >= 30){
+        billTotalElement.classList.remove('warning');
         billTotalElement.classList.add('danger');
+
+    }else{
+        billTotalElement.classList.remove('danger');
+        billTotalElement.classList.add('black');
+
     }
     
 
