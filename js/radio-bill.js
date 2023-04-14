@@ -14,8 +14,6 @@
 
 
 
-
-
 function radioBill() {
     var callTotal = 0.00;
     var smsTotal = 0.00;
@@ -31,15 +29,15 @@ function radioBill() {
 
     }else if (billItemType == 'call'){
         callTotal += 2.75;
-    }else{
-        alert("select billType");
-    }
+    };
 
-    if(totalBill >= 30 && totalBill <50){
+
+
+    if(totalBill >= 30){
         billTotalElement.classList.add('warning');
     }
 
-    else if(totalBill>= 50){
+    else if(totalBill >= 50){
         billTotalElement.classList.remove('warning');
         billTotalElement.classList.add('danger');
     }

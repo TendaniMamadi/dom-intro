@@ -13,15 +13,15 @@
 //link the function to a click event on the calculate button
 
 
+let billStringElement = document.querySelector(".billString");
 let calculateBtnElement = document.querySelector(".calculateBtn");
 let billTotalElement = document.querySelector(".billTotal");
-let billStringElement = document.querySelector(".billString");
 
 
 function totalPhoneBill(){
     var overallBillTotal = 0;
     
-    //console.log(billStringElement)
+   
     let price = billStringElement.value.toLowerCase().split(',');
     
     for(var i = 0; i<price.length;i++){
@@ -34,21 +34,24 @@ function totalPhoneBill(){
             overallBillTotal += 0.75
         }
     }
-    //console.log(overallBillTotal)
+  
 
-    if(overallBillTotal >= 20){
+    if(overallBillTotal >= 30){
+        
+        billTotalElement.classList.add('danger');
+
+    }
+
+    else if(overallBillTotal >= 20){
+        billTotalElement.classList.remove('danger');
         billTotalElement.classList.add('warning');
 
     }
 
-    if(overallBillTotal >= 30){
+
+    else if(overallBillTotal < 20) {
         billTotalElement.classList.remove('warning');
-        billTotalElement.classList.add('danger');
-
-    }else{
-        billTotalElement.classList.remove('danger');
-        billTotalElement.classList.add('black');
-
+        
     }
     
 
