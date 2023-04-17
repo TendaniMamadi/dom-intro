@@ -14,45 +14,52 @@
 
 
 
+let smsTotalElement3 = document.querySelector(".smsTotalTwo")
+let callTotalElement3 = document.querySelector(".callTotalTwo")
+let billTotalElement3 = document.querySelector(".totalTwo")
+let billItemType = document.querySelector(".billItemTypeRadio:checked");
+
+let addRadioButton = document.querySelector(".radioBillAddBtn")
+
+
+var callTotal = 0;
+var smsTotal = 0;
+var totalBill3 = 0;
+
+
 function radioBill() {
-    var callTotal = 0.00;
-    var smsTotal = 0.00;
-    var totalBill = callTotal + smsTotal;
 
-    let smsTotalElement = document.querySelector(".smsTotalTwo")
-    let callTotalElement = document.querySelector(".callTotalTwo")
-    let billTotalElement = document.querySelector(".totalTwo")
-    let billItemType = document.querySelector(".billItemTypeRadio:checked").value;
+    var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
+    
+    var billItemType = checkedRadioBtn.value
+   
+    if (billItemType == 'sms') {
+        smsTotal += 0.75;
 
-    if(billItemType == 'sms'){
-       smsTotal += 0.75;
-
-    }else if (billItemType == 'call'){
+    } else if (billItemType == 'call') {
         callTotal += 2.75;
     };
 
+    totalBill3 = smsTotal + callTotal;
 
 
-    if(totalBill >= 30){
-        billTotalElement.classList.add('warning');
+    smsTotalElement3.innerHTML = smsTotal.toFixed(2);
+    callTotalElement3.innerHTML = callTotal.toFixed(2);
+
+    billTotalElement3.innerHTML = totalBill3.toFixed(2);
+
+    if (totalBill3 >= 50) {
+
+        billTotalElement3.classList.add('danger');
     }
 
-    else if(totalBill >= 50){
-        billTotalElement.classList.remove('warning');
-        billTotalElement.classList.add('danger');
+    else if (totalBill3 >= 30) {
+        billTotalElement3.classList.remove('danger');
+        billTotalElement3.classList.add('warning');
     }
-    
 
-    
 
-    smsTotalElement.innerHTML = smsTotal + Number(smsTotalElement.innerHTML);
-    callTotalElement.innerHTML = callTotal + Number(callTotalElement.innerHTML);
-
-    billTotalElement.innerHTML = (Number(smsTotalElement.innerHTML) + Number(callTotalElement.innerHTML)).toFixed(2);
-
-    
 
 };
 
-let addRadioButton = document.querySelector(".radioBillAddBtn")
 addRadioButton.addEventListener('click', radioBill);
