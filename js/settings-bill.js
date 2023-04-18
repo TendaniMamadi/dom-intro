@@ -31,7 +31,7 @@ var smsTotalSettings = 0;
 
 
 
- 
+
 
 //add an event listener for when the add button is pressed
 
@@ -40,7 +40,9 @@ function updateBtnClicked() {
     smsCostSetting = smsCostElement4.value;
     warningLevelSetting = warningElement4.value;
     criticalLevelSetting = criticalElement4.value;
-
+    
+    const addSettingBtn = document.querySelector(".add-setting-btn");
+    addSettingBtn.disabled = false;
 
 }
 
@@ -55,36 +57,47 @@ btnSet.addEventListener("click", updateBtnClicked)
 
 
 function addBtnClick() {
+
     var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
     let billItemType4 = checkedRadioBtn.value;
-            
-    if (billItemType4  == 'sms') {
-        smsTotalSettings += Number(smsCostSetting);
-        smsSettingTotalElem.innerHTML = smsTotalSettings.toFixed(2) ;
 
-    } else if (billItemType4  == 'call') {  
+    if (billItemType4 == 'sms') {
+        smsTotalSettings += Number(smsCostSetting);
+        smsSettingTotalElem.innerHTML = smsTotalSettings.toFixed(2);
+
+    } else if (billItemType4 == 'call') {
         callTotalSettings += Number(callCostSetting);
-        callSettingTotalElem.innerHTML = callTotalSettings.toFixed(2) ;
+        callSettingTotalElem.innerHTML = callTotalSettings.toFixed(2);
 
     };
 
+
     settingTotalElem.innerHTML = (Number(callTotalSettings) + Number(smsTotalSettings)).toFixed(2);
     var billTotalSettings = callTotalSettings + smsTotalSettings;
-    
 
-    if (billTotalSettings >= criticalLevelSetting ) {
+
+    if (billTotalSettings >= criticalLevelSetting) {
         settingTotalElem.classList.add('danger');
     }
-    
+
     else if (billTotalSettings >= warningLevelSetting) {
-        
+
         settingTotalElem.classList.remove('danger');
         settingTotalElem.classList.add('warning');
     }
 
+
+
+    if(billTotalSettings >= criticalLevelSetting){
+        addSettingBtn.disabled = true;
+    }
+
+        
     
+
 }
+
 
 const addSettingBtn = document.querySelector(".add-setting-btn");
 addSettingBtn.addEventListener("click", addBtnClick);
