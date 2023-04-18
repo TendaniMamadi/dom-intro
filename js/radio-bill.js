@@ -14,6 +14,7 @@
 
 
 
+
 let smsTotalElement3 = document.querySelector(".smsTotalTwo")
 let callTotalElement3 = document.querySelector(".callTotalTwo")
 let billTotalElement3 = document.querySelector(".totalTwo")
@@ -25,7 +26,6 @@ let addRadioButton = document.querySelector(".radioBillAddBtn")
 var callTotal = 0;
 var smsTotal = 0;
 var totalBill3 = 0;
-
 
 function radioBill() {
 
