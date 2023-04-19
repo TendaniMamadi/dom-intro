@@ -27,6 +27,7 @@ let criticalLevelSetting = 0;
 // create a variables that will keep track of all three totals. *
 var callTotalSettings = 0;
 var smsTotalSettings = 0;
+var billTotalSettings = 0;
 
 
 
@@ -42,7 +43,12 @@ function updateBtnClicked() {
     criticalLevelSetting = criticalElement4.value;
     
     const addSettingBtn = document.querySelector(".add-setting-btn");
-    addSettingBtn.disabled = false;
+   
+    
+    if(billTotalSettings <= criticalLevelSetting){
+        addSettingBtn.disabled = false;
+    }
+
 
 }
 
@@ -74,7 +80,8 @@ function addBtnClick() {
 
 
     settingTotalElem.innerHTML = (Number(callTotalSettings) + Number(smsTotalSettings)).toFixed(2);
-    var billTotalSettings = callTotalSettings + smsTotalSettings;
+
+     billTotalSettings = callTotalSettings + smsTotalSettings;
 
 
     if (billTotalSettings >= criticalLevelSetting) {
