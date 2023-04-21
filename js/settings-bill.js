@@ -49,6 +49,24 @@ function updateBtnClicked() {
         addSettingBtn.disabled = false;
     }
 
+    if (billTotalSettings >= criticalLevelSetting) {
+        settingTotalElem.classList.remove('warning');
+        settingTotalElem.classList.add('danger');
+    }
+
+    else if (billTotalSettings >= warningLevelSetting) {
+
+        settingTotalElem.classList.remove('danger');
+        settingTotalElem.classList.add('warning');
+    }
+
+    else if (billTotalSettings <= warningLevelSetting) {
+
+        settingTotalElem.classList.remove('danger');
+        settingTotalElem.classList.remove('warning');
+    }
+
+
 
 }
 
@@ -93,6 +111,8 @@ function addBtnClick() {
         settingTotalElem.classList.remove('danger');
         settingTotalElem.classList.add('warning');
     }
+
+    
 
 
 
