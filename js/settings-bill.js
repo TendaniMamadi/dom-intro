@@ -37,34 +37,37 @@ var billTotalSettings = 0;
 //add an event listener for when the add button is pressed
 
 function updateBtnClicked() {
+
+    let settingBill = settingsBill();
+
     callCostSetting = callCostElement4.value; // grabbing from the screen textbox to assign to the variables
     smsCostSetting = smsCostElement4.value;
     warningLevelSetting = warningElement4.value;
     criticalLevelSetting = criticalElement4.value;
-    
+
     const addSettingBtn = document.querySelector(".add-setting-btn");
-   
-    
-    if(billTotalSettings <= criticalLevelSetting){
-        addSettingBtn.disabled = false;
-    }
 
-    if (billTotalSettings >= criticalLevelSetting) {
-        settingTotalElem.classList.remove('warning');
-        settingTotalElem.classList.add('danger');
-    }
 
-    else if (billTotalSettings >= warningLevelSetting) {
+    // if (billTotalSettings <= criticalLevelSetting) {
+    //     addSettingBtn.disabled = false;
+    // }
 
-        settingTotalElem.classList.remove('danger');
-        settingTotalElem.classList.add('warning');
-    }
+    // if (billTotalSettings >= criticalLevelSetting) {
+    //     settingTotalElem.classList.remove('warning');
+    //     settingTotalElem.classList.add('danger');
+    // }
 
-    else if (billTotalSettings <= warningLevelSetting) {
+    // else if (billTotalSettings >= warningLevelSetting) {
 
-        settingTotalElem.classList.remove('danger');
-        settingTotalElem.classList.remove('warning');
-    }
+    //     settingTotalElem.classList.remove('danger');
+    //     settingTotalElem.classList.add('warning');
+    // }
+
+    // else if (billTotalSettings <= warningLevelSetting) {
+
+    //     settingTotalElem.classList.remove('danger');
+    //     settingTotalElem.classList.remove('warning');
+    // }
 
 
 
@@ -82,46 +85,48 @@ btnSet.addEventListener("click", updateBtnClicked)
 
 function addBtnClick() {
 
+    let settingBill = settingsBill();
+
     var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
     let billItemType4 = checkedRadioBtn.value;
 
-    if (billItemType4 == 'sms') {
-        smsTotalSettings += Number(smsCostSetting);
-        smsSettingTotalElem.innerHTML = smsTotalSettings.toFixed(2);
+    // if (billItemType4 == 'sms') {
+    //     smsTotalSettings += Number(smsCostSetting);
+    //     smsSettingTotalElem.innerHTML = smsTotalSettings.toFixed(2);
 
-    } else if (billItemType4 == 'call') {
-        callTotalSettings += Number(callCostSetting);
-        callSettingTotalElem.innerHTML = callTotalSettings.toFixed(2);
+    // } else if (billItemType4 == 'call') {
+    //     callTotalSettings += Number(callCostSetting);
+    //     callSettingTotalElem.innerHTML = callTotalSettings.toFixed(2);
 
-    };
+    // };
 
 
     settingTotalElem.innerHTML = (Number(callTotalSettings) + Number(smsTotalSettings)).toFixed(2);
 
-     billTotalSettings = callTotalSettings + smsTotalSettings;
+    // billTotalSettings = callTotalSettings + smsTotalSettings;
 
 
-    if (billTotalSettings >= criticalLevelSetting) {
-        settingTotalElem.classList.add('danger');
-    }
+    // if (billTotalSettings >= criticalLevelSetting) {
+    //     settingTotalElem.classList.add('danger');
+    // }
 
-    else if (billTotalSettings >= warningLevelSetting) {
+    // else if (billTotalSettings >= warningLevelSetting) {
 
-        settingTotalElem.classList.remove('danger');
-        settingTotalElem.classList.add('warning');
-    }
-
-    
+    //     settingTotalElem.classList.remove('danger');
+    //     settingTotalElem.classList.add('warning');
+    // }
 
 
 
-    if(billTotalSettings >= criticalLevelSetting){
-        addSettingBtn.disabled = true;
-    }
 
-        
-    
+
+    // if (billTotalSettings >= criticalLevelSetting) {
+    //     addSettingBtn.disabled = true;
+    // }
+
+
+
 
 }
 

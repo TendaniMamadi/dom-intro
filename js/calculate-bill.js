@@ -16,47 +16,56 @@
 let billStringElement = document.querySelector(".billString");
 let calculateBtnElement = document.querySelector(".calculateBtn");
 let billTotalElement = document.querySelector(".billTotal");
-
-
-function totalPhoneBill(){
-    var overallBillTotal = 0;
+function totalPhoneBill() {
+    // var overallBillTotal = 0;
     
-   
-    let price = billStringElement.value.toLowerCase().split(',');
-    
-    for(var i = 0; i<price.length;i++){
-        let currentBillString = price[i].trim();
-        if(currentBillString === 'call'){
-            overallBillTotal += 2.75;
-        }
-
-        if(currentBillString === 'sms'){
-            overallBillTotal += 0.75
-        }
-    }
-  
-
-    if(overallBillTotal >= 30){
-        
-        billTotalElement.classList.add('danger');
-
-    }
-
-    else if(overallBillTotal >= 20){
-        billTotalElement.classList.remove('danger');
-        billTotalElement.classList.add('warning');
-
-    }
+    let calculateBill = CalculateBill();
 
 
-    else if(overallBillTotal < 20) {
-        billTotalElement.classList.remove('warning');
-        
-    }
-    
+    // let price = billStringElement.value.toLowerCase().split(',');
 
-    var roundedBillTotal = overallBillTotal.toFixed(2);
-    billTotalElement.innerHTML = roundedBillTotal;
+    // for(var i = 0; i<price.length;i++){
+    //     let currentBillString = price[i].trim();
+    //     if(currentBillString === 'call'){
+    //         overallBillTotal += 2.75;
+    //     }
+
+    //     if(currentBillString === 'sms'){
+    //         overallBillTotal += 0.75
+    //     }
+    // }
+    let price = billStringElement.value;
+    calculateBill.calculate(price)
+
+    // if (overallBillTotal >= 30) {
+
+    //     billTotalElement.classList.add('danger');
+
+    // }
+
+    // else if (overallBillTotal >= 20) {
+    //     billTotalElement.classList.remove('danger');
+    //     billTotalElement.classList.add('warning');
+
+    // }
+
+
+    // else if (overallBillTotal < 20) {
+    //     billTotalElement.classList.remove('warning');
+
+    // }
+
+
+
+
+    // var roundedBillTotal = overallBillTotal.toFixed(2)
+
+    billTotalElement.classList.add(calculateBill.totalClassName1());
+    billTotalElement.classList.add(calculateBill.totalClassName());
+    billTotalElement.classList.remove(calculateBill.totalClassName2());
+    billTotalElement.classList.remove(calculateBill.totalClassName3());
+    billTotalElement.innerHTML = calculateBill.getTotalCost();
+
 }
 
 calculateBtnElement.addEventListener('click', totalPhoneBill);
