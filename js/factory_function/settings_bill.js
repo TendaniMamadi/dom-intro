@@ -120,7 +120,7 @@ function settingsBill() {
         
         if(hasReachedCriticalLevel()){
             
-            return "critical"
+            return "danger"
         }
         
         if(hasReachedWarningLevel()){

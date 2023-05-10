@@ -30,7 +30,7 @@ var smsTotalSettings = 0;
 var billTotalSettings = 0;
 
 
-
+let settingsBills = settingsBill();
 
 
 
@@ -38,7 +38,7 @@ var billTotalSettings = 0;
 
 function updateBtnClicked() {
 
-    let settingBill = settingsBill();
+    
 
     callCostSetting = callCostElement4.value; // grabbing from the screen textbox to assign to the variables
     smsCostSetting = smsCostElement4.value;
@@ -47,6 +47,14 @@ function updateBtnClicked() {
 
     const addSettingBtn = document.querySelector(".add-setting-btn");
 
+    settingsBills.setCallCost(Number(callCostSetting));
+    settingsBills.setSmsCost(Number(smsCostSetting));
+    settingsBills.setWarningLevel(warningLevelSetting);
+    settingsBills.setCriticalLevel(criticalLevelSetting);
+
+    settingTotalElem.classList.remove('danger');
+    settingTotalElem.classList.remove('warning');
+    settingTotalElem.classList.add(settingsBills.totalClassName())
 
     // if (billTotalSettings <= criticalLevelSetting) {
     //     addSettingBtn.disabled = false;
@@ -85,46 +93,31 @@ btnSet.addEventListener("click", updateBtnClicked)
 
 function addBtnClick() {
 
-    let settingBill = settingsBill();
-
     var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
     let billItemType4 = checkedRadioBtn.value;
 
-    // if (billItemType4 == 'sms') {
-    //     smsTotalSettings += Number(smsCostSetting);
-    //     smsSettingTotalElem.innerHTML = smsTotalSettings.toFixed(2);
+    if (billItemType4 == 'sms') {
+        
+        settingsBills.sendSms();
 
-    // } else if (billItemType4 == 'call') {
-    //     callTotalSettings += Number(callCostSetting);
-    //     callSettingTotalElem.innerHTML = callTotalSettings.toFixed(2);
+    } else if (billItemType4 == 'call') {
+        
+        settingsBills.makeCall();
 
-    // };
+    };
 
+    smsSettingTotalElem.innerHTML = settingsBills.getTotalSmsCost().toFixed(2)
 
-    settingTotalElem.innerHTML = (Number(callTotalSettings) + Number(smsTotalSettings)).toFixed(2);
+    callSettingTotalElem.innerHTML = settingsBills.getTotalCallCost().toFixed(2)
 
-    // billTotalSettings = callTotalSettings + smsTotalSettings;
+    settingTotalElem.innerHTML = settingsBills.getTotalCost().toFixed(2)
 
-
-    // if (billTotalSettings >= criticalLevelSetting) {
-    //     settingTotalElem.classList.add('danger');
-    // }
-
-    // else if (billTotalSettings >= warningLevelSetting) {
-
-    //     settingTotalElem.classList.remove('danger');
-    //     settingTotalElem.classList.add('warning');
-    // }
-
-
-
-
-
-    // if (billTotalSettings >= criticalLevelSetting) {
-    //     addSettingBtn.disabled = true;
-    // }
-
+    
+     settingTotalElem.classList.remove('danger');
+     settingTotalElem.classList.remove('warning');
+     settingTotalElem.classList.add(settingsBills.totalClassName())
+  
 
 
 
