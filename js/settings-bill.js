@@ -1,5 +1,4 @@
 
-// let typeSet = document.querySelector(".billItemTypeWithSettings");
 
 // get refences to all the settings fields *
 let callCostElement4 = document.querySelector(".callCostSetting");
@@ -11,24 +10,6 @@ let criticalElement4 = document.querySelector(".criticalLevelSetting");
 let callSettingTotalElem = document.querySelector(".callTotalSettings")
 let smsSettingTotalElem = document.querySelector(".smsTotalSettings")
 let settingTotalElem = document.querySelector(".totalSettings");
-
-
-
-
-// create a variables that will keep track of all the settings
-let callCostSetting = 0;
-let smsCostSetting = 0;
-let warningLevelSetting = 0;
-let criticalLevelSetting = 0;
-
-
-
-
-// create a variables that will keep track of all three totals. *
-var callTotalSettings = 0;
-var smsTotalSettings = 0;
-var billTotalSettings = 0;
-
 
 let settingsBills = settingsBill();
 
@@ -47,36 +28,14 @@ function updateBtnClicked() {
 
     const addSettingBtn = document.querySelector(".add-setting-btn");
 
-    settingsBills.setCallCost(Number(callCostSetting));
-    settingsBills.setSmsCost(Number(smsCostSetting));
-    settingsBills.setWarningLevel(warningLevelSetting);
-    settingsBills.setCriticalLevel(criticalLevelSetting);
+    settingsBills.setCallCost(Number(callCostElement4.value));
+    settingsBills.setSmsCost(Number(smsCostElement4.value));
+    settingsBills.setWarningLevel(warningElement4.value);
+    settingsBills.setCriticalLevel(criticalElement4.value);
 
     settingTotalElem.classList.remove('danger');
     settingTotalElem.classList.remove('warning');
     settingTotalElem.classList.add(settingsBills.totalClassName())
-
-    // if (billTotalSettings <= criticalLevelSetting) {
-    //     addSettingBtn.disabled = false;
-    // }
-
-    // if (billTotalSettings >= criticalLevelSetting) {
-    //     settingTotalElem.classList.remove('warning');
-    //     settingTotalElem.classList.add('danger');
-    // }
-
-    // else if (billTotalSettings >= warningLevelSetting) {
-
-    //     settingTotalElem.classList.remove('danger');
-    //     settingTotalElem.classList.add('warning');
-    // }
-
-    // else if (billTotalSettings <= warningLevelSetting) {
-
-    //     settingTotalElem.classList.remove('danger');
-    //     settingTotalElem.classList.remove('warning');
-    // }
-
 
 
 }
